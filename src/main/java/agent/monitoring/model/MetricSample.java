@@ -12,7 +12,17 @@ public record MetricSample(
         //uso de la RAM
         @SerializedName("ramUsage") double ramUsage,
 
-        //disco usado
-        @SerializedName("diskUsage") double diskUsage
+        // ---------------------------------------------------
+        //                       Disco
+        // ---------------------------------------------------
+
+        //porcentaje del disco usado
+        @SerializedName("diskPercent") double diskPercent,
+
+        // GB usados
+        @SerializedName("diskUsedGb") double diskUsedGb,
+
+        @SerializedName("diskTotalGb") double diskTotalGb
+
 
 ) {}

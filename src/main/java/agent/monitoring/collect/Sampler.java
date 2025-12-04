@@ -26,18 +26,30 @@ public class Sampler {
         long usedMem = totalMem - osBean.getFreeMemorySize(); //obtiene la RAM libre, se resta la total con la libre para tener la usada
         double ramPercent = (totalMem > 0) ? ((double) usedMem / totalMem) * 100.0 : 0.0; //convertir la RAM usada en porcentaje
 
-        //3. Obtener el disco usado (en GB)
-        File discoC = new File("C:"); // "/" en Linux
-        long totalBytes = discoC.getTotalSpace();
-        long freeBytes = discoC.getFreeSpace();
+        // 3. Disco (porcentaje + GB usados / GB totales)
+        File disco = new File("C:\\"); // "/" en Linux; puedes parametrizar esto si quieres
+        long totalBytes = disco.getTotalSpace();
+        long freeBytes = disco.getFreeSpace();
         long usedBytes = totalBytes - freeBytes;
-        double diskGb = (double) usedBytes / (1024 * 1024 * 1024); //convertir a GB
+
+        double diskPercent = (totalBytes > 0)
+                ? ((double) usedBytes / totalBytes) * 100.0
+                : 0.0;
+
+        double diskUsedGb = bytesToGb(usedBytes);
+        double diskTotalGb = bytesToGb(totalBytes);
 
         return new MetricSample(
                 TimeOffset.getSynchronizedTime().toString(), //momento exacto de la lectura
                 cpuLoad,
                 ramPercent,
-                diskGb
+                diskPercent,
+                diskUsedGb,
+                diskTotalGb
         );
+    }
+    private double bytesToGb(long bytes) {
+        final long BYTES_PER_GB = 1024L * 1024L * 1024L;
+        return (double) bytes / BYTES_PER_GB;
     }
 }

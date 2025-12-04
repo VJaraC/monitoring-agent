@@ -7,7 +7,14 @@ import agent.monitoring.model.MetricSample;
 import agent.monitoring.transport.HttpTransport; // <--- 1. Importante: Importar tu nueva clase
 import agent.monitoring.transport.Transport;
 
+import java.io.IOException;
+import java.net.http.HttpClient;
+import agent.monitoring.util.TimeOffset;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.time.Instant;
+import java.net.URI;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -73,10 +80,50 @@ public final class AgentMain {
             }
         }, cfg.sendIntervalSeconds(), cfg.sendIntervalSeconds(), TimeUnit.SECONDS);
     }
+    private static void synchronizeTime(String timeUrl) {
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(timeUrl))
+                    .GET()
+                    .build();
+
+            // Medir el tiempo local ANTES de la petición (T1)
+            long t1 = System.currentTimeMillis();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            // Medir el tiempo local DESPUÉS de la petición (T3)
+            long t3 = System.currentTimeMillis();
+
+            if (response.statusCode() == 200) {
+                String serverTimeString = response.body().trim();
+                // Tiempo que el servidor dijo que era (T2)
+                long t2ServerTime = Instant.parse(serverTimeString).toEpochMilli();
+
+                // Cálculo de latencia promedio (Round Trip Time, T3-T1)
+                long latencia = (t3 - t1) / 2;
+
+                // El offset real es: (Tiempo del Servidor) - (Tiempo Local Promedio)
+                long offset = t2ServerTime - t3 + latencia;
+                TimeOffset.setOffset(offset);
+
+                System.out.println("✅ Sincronización exitosa. Offset aplicado: " + offset + "ms.");
+
+            } else {
+                System.err.println("❌ Error al sincronizar hora. Servidor respondió: " + response.statusCode());
+            }
+        } catch (DateTimeParseException | InterruptedException | IOException e) {
+            System.err.println("❌ Fallo en la sincronización de tiempo. Usando reloj local. Error: " + e.getMessage());
+        }
+    }
 
     public static void main(String[] args) {
         // 1. Cargar configuración (Variables de entorno o valores por defecto)
         AgentConfig cfg = AgentConfig.fromEnvOrDefaults();
+
+        String timeUrl = cfg.ingestUrl().replace("/metrics", "/time");
+        synchronizeTime(timeUrl);
 
         // 2. Inicializar el recolector de métricas
         Sampler sampler = new Sampler();

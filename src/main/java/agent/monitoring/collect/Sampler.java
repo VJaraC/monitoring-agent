@@ -4,6 +4,8 @@ import agent.monitoring.model.MetricSample;
 
 import java.io.File;
 import java.lang.management.ManagementFactory;
+
+import agent.monitoring.util.TimeOffset;
 import com.sun.management.OperatingSystemMXBean;
 import java.time.Instant;
 
@@ -32,7 +34,7 @@ public class Sampler {
         double diskGb = (double) usedBytes / (1024 * 1024 * 1024); //convertir a GB
 
         return new MetricSample(
-                Instant.now().toString(), //momento exacto de la lectura
+                TimeOffset.getSynchronizedTime().toString(), //momento exacto de la lectura
                 cpuLoad,
                 ramPercent,
                 diskGb

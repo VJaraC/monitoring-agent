@@ -32,7 +32,7 @@ public class Sampler {
         double cpuLoad = osBean.getCpuLoad() * 100.0;
         if (Double.isNaN(cpuLoad)) cpuLoad = 0.0;
 
-        // Devuelve grados Celsius. Si no puede leerlo, suele devolver 0.0
+        // Devuelve grados Celsius.
         double cpuTemp = hardware.getSensors().getCpuTemperature();
 
         // 2. RAM

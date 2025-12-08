@@ -9,6 +9,9 @@ public record MetricSample(
         //uso del CPU
         @SerializedName("cpuUsage") double cpuUsage,
 
+        //temperatura del cpu
+        @SerializedName("cpuTemp") double cpuTemp,
+
         //uso de la RAM
         @SerializedName("ramUsage") double ramUsage,
 
@@ -19,10 +22,15 @@ public record MetricSample(
         //porcentaje del disco usado
         @SerializedName("diskPercent") double diskPercent,
 
-        // GB usados
-        @SerializedName("diskUsedGb") double diskUsedGb,
+        //lectura del disco
+        @SerializedName("diskReadRate") double diskReadRate,
 
-        @SerializedName("diskTotalGb") double diskTotalGb
+        //escritura del disco
+        @SerializedName("diskWriteRate") double diskWriteRate
+
+
+
+
 
 
 ) {}

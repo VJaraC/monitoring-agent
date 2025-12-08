@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c534e721-867e-434b-9cf5-8293a88129ea" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/agent/monitoring/collect/Sampler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agent/monitoring/collect/Sampler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/agent/monitoring/config/AgentConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agent/monitoring/config/AgentConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/agent/monitoring/model/MetricSample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agent/monitoring/model/MetricSample.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,12 +32,12 @@
     &quot;assignee&quot;: &quot;VJaraC&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/VJaraC/monitoring-agent.git",
-    "accountId": "b6deb127-2af9-4af1-9666-7dcd18f593b6"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/VJaraC/monitoring-agent.git&quot;,
+    &quot;accountId&quot;: &quot;41dab3bd-0c6a-4758-8953-90252bc08ec5&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 7
@@ -49,12 +50,15 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.AgentMain.executor&quot;: &quot;Run&quot;,
+    &quot;Application.INGEST_URL.executor&quot;: &quot;Run&quot;,
     &quot;Maven.monitoring-agent [clean].executor&quot;: &quot;Run&quot;,
     &quot;Maven.monitoring-agent [package].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/dev/src/main/java/agent/monitoring/transport&quot;,
@@ -72,11 +76,33 @@
       <recent name="C:\dev\src\main\java\agent\monitoring\transport" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="INGEST_URL" type="Application" factoryName="Application">
+      <envs>
+        <env name="INGEST_URL" value="http://localhost:8080/metrics" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="agent.monitoring.AgentMain" />
+      <module name="monitoring-agent" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.26775.15" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.26775.15" />
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26830.84" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.26830.84" />
       </set>
     </attachedChunks>
   </component>
@@ -93,6 +119,8 @@
       <workItem from="1764809405864" duration="18000" />
       <workItem from="1764809598545" duration="847000" />
       <workItem from="1764858863333" duration="1563000" />
+      <workItem from="1765226394778" duration="1520000" />
+      <workItem from="1765227949468" duration="3097000" />
     </task>
     <servers />
   </component>

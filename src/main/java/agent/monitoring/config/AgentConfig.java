@@ -26,7 +26,7 @@ public record AgentConfig(
                 "os_arch", System.getProperty("os.arch"),
                 "ip", resolveIp(),
                 "mac", resolveMac(),
-                "serial", getSerialNumber() // <--- Nueva función
+                "serial", getSerialNumber()
         );
 
         return new AgentConfig(key, url, sample, send, hostInfo);
@@ -34,7 +34,7 @@ public record AgentConfig(
     private static String getSerialNumber() {
             String os = System.getProperty("os.name").toLowerCase();
 
-            // 1. Intento principal: PowerShell (Windows Moderno)
+            // 1. Intento principal: PowerShell
             if (os.contains("win")) {
                 try {
                     // Comando PowerShell para obtener el serial
